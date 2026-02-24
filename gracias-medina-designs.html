@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GraciasMedina Designs — Where Culture Meets Couture</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* === VARIABLES === */
+:root {
+  --magenta:#C2185B; --magenta-dark:#880E4F; --magenta-light:#F06292;
+  --gold:#D4AF37; --gold-light:#F0D060;
+  --black:#0D0D0D; --dark:#1a0a0f;
+  --cream:#FFF8F0; --rose:#F8BBD0;
+  --text:#2c1a24; --text-light:#8a6070;
+  --white:#ffffff;
+  --ease: cubic-bezier(0.25,0.46,0.45,0.94);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cormorant Garamond',serif;background:var(--cream);color:var(--text);overflow-x:hidden;cursor:none;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+button{cursor:none;border:none;outline:none;background:none;font-family:inherit;}
+ul{list-style:none;}
+input,textarea,select{font-family:'Cormorant Garamond',serif;}
+
+/* === PAGE SYSTEM === */
+.page{display:none;}
+.page.active{display:block;}
+
+/* === CURSOR === */
+#cur{width:12px;height:12px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:multiply;}
+#cur-ring{width:36px;height:36px;border:1.5px solid var(--magenta);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.7;}
+.spark{position:fixed;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:99997;animation:sparkFade .6s ease forwards;}
+@keyframes sparkFade{0%{opacity:1;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-50%) scale(0);}}
+
+/* === LOADER === */
+#loader{position:fixed;inset:0;background:var(--dark);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s;}
+#loader.gone{opacity:0;visibility:hidden;pointer-events:none;}
+.ld-mono{font-family:'Great Vibes',cursive;font-size:110px;color:var(--gold);animation:glow 1.5s ease-in-out infinite alternate;letter-spacing:4px;}
+.ld-line{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--magenta),var(--gold),transparent);margin-top:18px;animation:grow 2s ease forwards .3s;}
+.ld-text{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:16px;opacity:0;animation:fadeUp 1s ease forwards .8s;}
+@keyframes glow{from{text-shadow:0 0 20px rgba(212,175,55,.3);}to{text-shadow:0 0 60px rgba(212,175,55,.9);}}
+@keyframes grow{to{width:240px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* === TOAST === */
+#toast{position:fixed;top:96px;right:26px;z-index:9999;background:var(--dark);border-left:3px solid var(--gold);color:white;padding:15px 20px;font-size:15px;max-width:290px;transform:translateX(120%);transition:transform .4s var(--ease);box-shadow:0 10px 40px rgba(0,0,0,.4);}
+#toast.show{transform:translateX(0);}
+
+/* === NAV === */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s var(--ease);}
+#nav.scrolled{background:rgba(255,248,240,.97);backdrop-filter:blur(14px);padding:13px 52px;box-shadow:0 2px 40px rgba(194,24,91,.08);}
+.nav-logo{font-family:'Great Vibes',cursive;font-size:36px;color:white;transition:color .4s;line-height:1;}
+#nav.scrolled .nav-logo{color:var(--magenta);}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:34px;align-items:center;}
+.nav-links a{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.85);transition:color .3s;position:relative;}
+#nav.scrolled .nav-links a{color:var(--text);}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--gold);}
+#nav.scrolled .nav-links a.active{color:var(--magenta);}
+#nav.scrolled .nav-links a:hover{color:var(--magenta);}
+#nav.scrolled .nav-links a::after{background:var(--magenta);}
+.nav-icons{display:flex;gap:20px;align-items:center;}
+.nav-icon-btn{color:rgba(255,255,255,.85);font-size:17px;transition:all .3s;position:relative;}
+#nav.scrolled .nav-icon-btn{color:var(--text);}
+.nav-icon-btn:hover{color:var(--gold);transform:scale(1.15);}
+#nav.scrolled .nav-icon-btn:hover{color:var(--magenta);}
+.cart-badge{position:absolute;top:-8px;right:-8px;background:var(--magenta);color:white;width:18px;height:18px;border-radius:50%;font-size:9px;font-family:'Montserrat',sans-serif;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.cart-badge.bump{animation:bump .35s ease;}
+@keyframes bump{0%,100%{transform:scale(1);}50%{transform:scale(1.6);}}
+
+/* === SHARED SECTION STYLES === */
+.section{padding:96px 60px;}
+.section-eye{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--magenta);margin-bottom:13px;display:block;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,52px);font-weight:400;line-height:1.15;margin-bottom:14px;}
+.section-title em{font-style:italic;color:var(--magenta);}
+.section-sub{font-size:18px;font-style:italic;color:var(--text-light);line-height:1.7;max-width:540px;}
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:50px;flex-wrap:wrap;gap:16px;}
+.view-all{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--magenta);border-bottom:1px solid var(--magenta);padding-bottom:2px;transition:all .3s;}
+.view-all:hover{color:var(--gold);border-color:var(--gold);}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--black);padding:15px 38px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:all .3s;}
+.btn-gold:hover{background:var(--magenta-dark);color:white;}
+.btn-magenta{display:inline-flex;align-items:center;gap:8px;background:var(--magenta);color:white;padding:15px 38px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:all .3s;border:2px solid var(--magenta);}
+.btn-magenta:hover{background:transparent;color:var(--magenta);}
+.btn-outline-dark{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,0,0,.2);color:var(--text);padding:15px 38px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:all .3s;}
+.btn-outline-dark:hover{border-color:var(--magenta);color:var(--magenta);}
+
+/* === PAGE HERO BANNER === */
+.page-hero{height:320px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;margin-top:0;padding-top:80px;}
+.page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(136,14,79,.6),rgba(13,13,13,.5));}
+.page-hero-content{position:relative;z-index:2;color:white;}
+.page-hero-eye{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+.page-hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,72px);font-weight:400;font-style:italic;}
+
+/* === PRODUCT CARD === */
+.product-card{position:relative;overflow:hidden;background:white;transition:transform .4s ease,box-shadow .4s ease;}
+.product-card:hover{transform:translateY(-8px);box-shadow:0 28px 56px rgba(194,24,91,.14);}
+.product-img-wrap{position:relative;overflow:hidden;aspect-ratio:3/4;background:#f5e6ed;}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+.product-card:hover .product-img-wrap img{transform:scale(1.07);}
+.product-img-wrap .img2{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;object-fit:cover;width:100%;height:100%;}
+.product-card:hover .img2{opacity:1;}
+.prod-overlay{position:absolute;inset:0;background:rgba(13,13,13,.35);opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center;gap:12px;}
+.product-card:hover .prod-overlay{opacity:1;}
+.ov-btn{background:white;color:var(--black);padding:11px 20px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;transform:translateY(10px);opacity:0;transition:all .3s;}
+.product-card:hover .ov-btn{transform:translateY(0);opacity:1;}
+.ov-btn:hover{background:var(--magenta);color:white;}
+.ov-btn:nth-child(2){transition-delay:.06s;}
+.prod-wish{position:absolute;top:13px;right:13px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-light);transition:all .3s;z-index:2;}
+.prod-wish:hover,.prod-wish.on{color:var(--magenta);}
+.prod-badge{position:absolute;top:13px;left:13px;background:var(--magenta);color:white;font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;z-index:2;}
+.prod-badge.gold{background:var(--gold);color:var(--black);}
+.product-info{padding:18px 16px 22px;}
+.prod-cat{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:5px;}
+.prod-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;margin-bottom:10px;transition:color .3s;}
+.product-card:hover .prod-name{color:var(--magenta);}
+.prod-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--magenta);}
+.prod-colors{display:flex;gap:6px;margin-top:10px;}
+.cdot{width:13px;height:13px;border-radius:50%;border:2px solid transparent;transition:transform .2s;}
+.cdot:hover{transform:scale(1.35);border-color:rgba(0,0,0,.2);}
+
+/* === SCROLL REVEAL === */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.revL{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease;}
+.revL.in{opacity:1;transform:translateX(0);}
+.revR{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease;}
+.revR.in{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.1s;} .d2{transition-delay:.2s;} .d3{transition-delay:.3s;} .d4{transition-delay:.4s;}
+
+/* =============================================
+   HOME PAGE STYLES
+============================================= */
+/* Hero */
+#hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-slides{position:absolute;inset:0;}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease;}
+.hero-slide.on{opacity:1;}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,13,13,.65) 0%,rgba(136,14,79,.3) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;color:white;padding:0 20px;}
+.hero-eye{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;opacity:0;animation:fadeUp 1s ease forwards 2.4s;}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(50px,8vw,106px);font-weight:400;line-height:1.06;margin-bottom:6px;opacity:0;animation:fadeUp 1s ease forwards 2.6s;}
+.hero-script{font-family:'Great Vibes',cursive;font-size:clamp(68px,11vw,148px);color:var(--gold);display:block;line-height:1;opacity:0;animation:fadeUp 1s ease forwards 2.8s;}
+.hero-sub{font-size:clamp(16px,2vw,21px);font-style:italic;color:rgba(255,255,255,.78);margin:18px 0 36px;opacity:0;animation:fadeUp 1s ease forwards 3s;}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s ease forwards 3.2s;}
+.btn-hero-primary{background:var(--magenta);color:white;padding:16px 42px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;border:2px solid var(--magenta);transition:all .3s;}
+.btn-hero-primary:hover{background:transparent;color:white;}
+.btn-hero-outline{border:1px solid rgba(255,255,255,.55);color:white;padding:16px 42px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:all .3s;}
+.btn-hero-outline:hover{border-color:var(--gold);color:var(--gold);}
+.hero-scroll{position:absolute;bottom:33px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:7px;color:rgba(255,255,255,.55);font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;opacity:0;animation:fadeUp 1s ease forwards 3.5s;}
+.scroll-line{width:1px;height:46px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:scrollPulse 2s ease-in-out infinite;}
+@keyframes scrollPulse{0%,100%{height:46px;opacity:.5;}50%{height:66px;opacity:1;}}
+
+/* Marquee */
+.marquee-wrap{background:var(--magenta);padding:15px 0;overflow:hidden;}
+.marquee-track{display:flex;animation:marq 28s linear infinite;white-space:nowrap;}
+.marquee-track span{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:white;padding:0 38px;opacity:.9;}
+.marquee-track .dot{color:var(--gold);padding:0;}
+@keyframes marq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* Products Grid */
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+
+/* Collections Grid */
+.coll-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:370px 370px;gap:14px;margin-top:54px;}
+.coll-cell{position:relative;overflow:hidden;}
+.coll-cell:first-child{grid-row:span 2;}
+.coll-cell img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;}
+.coll-cell:hover img{transform:scale(1.06);}
+.coll-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,13,.72) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:30px;}
+.coll-lbl{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.coll-ttl{font-family:'Playfair Display',serif;font-size:clamp(20px,2.4vw,28px);color:white;font-weight:400;margin-bottom:13px;}
+.coll-link{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:white;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:2px;transition:all .3s;width:fit-content;}
+.coll-link:hover{color:var(--gold);border-color:var(--gold);}
+
+/* About Preview */
+.about-split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
+.about-img{position:relative;min-height:600px;}
+.about-img img{width:100%;height:100%;object-fit:cover;}
+.about-img-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(136,14,79,.2),transparent);}
+.about-txt{background:var(--dark);padding:90px 80px;display:flex;flex-direction:column;justify-content:center;}
+.ab-eye{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.ab-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);font-weight:400;color:white;line-height:1.2;margin-bottom:24px;}
+.ab-h2 em{font-style:italic;color:var(--magenta-light);}
+.ab-body{font-size:16px;line-height:1.9;color:rgba(255,255,255,.68);margin-bottom:32px;}
+.ab-sig{font-family:'Great Vibes',cursive;font-size:50px;color:var(--gold);margin-bottom:32px;}
+.ab-stats{display:flex;gap:44px;}
+.ab-stat-num{font-family:'Playfair Display',serif;font-size:40px;color:var(--gold);font-weight:700;line-height:1;}
+.ab-stat-lbl{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:5px;}
+
+/* Testimonials */
+.testi-wrap{background:linear-gradient(135deg,var(--magenta-dark),var(--dark));padding:96px 60px;text-align:center;}
+.testi-inner{max-width:780px;margin:0 auto;}
+.testi-slider{position:relative;min-height:190px;margin:54px 0 36px;}
+.testi-item{position:absolute;inset:0;opacity:0;transition:opacity .6s;display:flex;flex-direction:column;align-items:center;pointer-events:none;}
+.testi-item.on{opacity:1;pointer-events:auto;}
+.testi-stars{color:var(--gold);font-size:18px;letter-spacing:4px;margin-bottom:22px;}
+.testi-quote{font-family:'Playfair Display',serif;font-size:clamp(18px,2.8vw,26px);font-style:italic;color:white;line-height:1.65;margin-bottom:24px;}
+.testi-author{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.testi-dots{display:flex;justify-content:center;gap:10px;}
+.tdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22);transition:all .3s;}
+.tdot.on{background:var(--gold);transform:scale(1.3);}
+
+/* Blog Preview */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+.blog-card{background:white;overflow:hidden;transition:transform .4s,box-shadow .4s;}
+.blog-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(194,24,91,.1);}
+.blog-img{aspect-ratio:4/3;overflow:hidden;}
+.blog-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.blog-card:hover .blog-img img{transform:scale(1.05);}
+.blog-body{padding:26px 24px 30px;}
+.blog-cat-tag{display:inline-block;background:var(--rose);color:var(--magenta-dark);font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:5px 11px;margin-bottom:13px;}
+.blog-ttl{font-family:'Playfair Display',serif;font-size:19px;font-weight:400;line-height:1.4;margin-bottom:11px;transition:color .3s;}
+.blog-card:hover .blog-ttl{color:var(--magenta);}
+.blog-exc{font-size:14px;color:var(--text-light);line-height:1.7;margin-bottom:18px;}
+.blog-meta{display:flex;align-items:center;gap:12px;font-family:'Montserrat',sans-serif;font-size:10px;color:var(--text-light);}
+.blog-meta i{color:var(--magenta);}
+
+/* Newsletter */
+.newsletter-sec{background:var(--magenta);padding:78px 60px;text-align:center;}
+.nl-title{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,44px);color:white;font-weight:400;margin-bottom:12px;}
+.nl-title em{font-style:italic;font-family:'Great Vibes',cursive;font-size:1.35em;}
+.nl-sub{font-size:17px;color:rgba(255,255,255,.75);margin-bottom:34px;font-style:italic;}
+.nl-form{display:flex;max-width:480px;margin:0 auto;border:1px solid rgba(255,255,255,.35);}
+.nl-form input{flex:1;padding:15px 20px;background:transparent;border:none;outline:none;color:white;font-family:'Cormorant Garamond',serif;font-size:16px;}
+.nl-form input::placeholder{color:rgba(255,255,255,.5);}
+.nl-form button{padding:15px 26px;background:var(--gold);color:var(--black);font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:all .3s;}
+.nl-form button:hover{background:white;}
+
+/* =============================================
+   SHOP PAGE STYLES
+============================================= */
+.shop-layout{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:60px;}
+.shop-sidebar{}
+.filter-group{margin-bottom:32px;}
+.filter-ttl{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--black);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,.08);}
+.filter-list{display:flex;flex-direction:column;gap:10px;}
+.filter-opt{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text);}
+.filter-opt input{accent-color:var(--magenta);width:15px;height:15px;}
+.filter-opt label{transition:color .3s;}
+.filter-opt:hover label{color:var(--magenta);}
+.price-range{display:flex;flex-direction:column;gap:8px;}
+.price-range input[type=range]{width:100%;accent-color:var(--magenta);}
+.price-row{display:flex;justify-content:space-between;font-family:'Montserrat',sans-serif;font-size:11px;color:var(--text-light);}
+.shop-products-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+.shop-count{font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;color:var(--text-light);}
+.shop-sort select{border:1px solid rgba(0,0,0,.12);padding:8px 14px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;color:var(--text);background:white;outline:none;}
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+
+/* =============================================
+   FOOTER STYLES
+============================================= */
+footer{background:var(--black);padding:76px 60px 36px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;margin-bottom:56px;}
+.footer-logo{font-family:'Great Vibes',cursive;font-size:44px;color:var(--gold);margin-bottom:14px;}
+.footer-logo span{color:var(--magenta-light);}
+.footer-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.8;margin-bottom:26px;max-width:270px;}
+.footer-social{display:flex;gap:12px;}
+.soc-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.13);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:13px;transition:all .3s;}
+.soc-btn:hover{border-color:var(--magenta);color:var(--magenta);background:rgba(194,24,91,.1);}
+.fc h4{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.fc ul{display:flex;flex-direction:column;gap:9px;}
+.fc ul li a{font-size:14px;color:rgba(255,255,255,.42);transition:color .3s;}
+.fc ul li a:hover{color:white;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.footer-bottom p{font-family:'Montserrat',sans-serif;font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.5px;}
+
+/* =============================================
+   MUSIC PLAYER
+============================================= */
+#music-toggle{position:fixed;bottom:0;right:78px;z-index:901;background:linear-gradient(135deg,var(--magenta-dark),var(--dark));border:1px solid rgba(212,175,55,.3);border-bottom:none;color:var(--gold);font-size:14px;width:44px;height:34px;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+#music-toggle:hover{color:white;background:var(--magenta);}
+#music-player{position:fixed;bottom:0;left:0;right:0;z-index:900;height:56px;background:rgba(26,10,15,.94);backdrop-filter:blur(20px);border-top:1px solid rgba(212,175,55,.18);display:flex;align-items:center;padding:0 26px;gap:18px;transform:translateY(100%);transition:transform .4s ease;}
+#music-player.up{transform:translateY(0);}
+.mp-cover{width:38px;height:38px;border-radius:3px;object-fit:cover;border:1px solid rgba(212,175,55,.25);flex-shrink:0;}
+.mp-info{min-width:0;flex:1;}
+.mp-track{font-family:'Playfair Display',serif;font-size:13px;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mp-artist{font-family:'Montserrat',sans-serif;font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1px;}
+.mp-ctrl{display:flex;align-items:center;gap:14px;}
+.mp-btn{color:rgba(255,255,255,.55);font-size:15px;transition:color .3s;}
+.mp-btn:hover{color:var(--gold);}
+.mp-play{font-size:20px;color:white;}
+.mp-bar-wrap{flex:1;max-width:200px;}
+.mp-bar{width:100%;height:2px;background:rgba(255,255,255,.1);border-radius:2px;}
+.mp-fill{height:100%;background:linear-gradient(90deg,var(--magenta),var(--gold));border-radius:2px;width:35%;transition:width .5s;}
+.mp-src{display:flex;gap:7px;}
+.mp-src-btn{padding:4px 11px;border:1px solid rgba(255,255,255,.13);font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);transition:all .3s;border-radius:2px;}
+.mp-src-btn:hover,.mp-src-btn.on{border-color:var(--gold);color:var(--gold);}
+.mp-x{color:rgba(255,255,255,.28);font-size:13px;transition:color .3s;margin-left:6px;}
+.mp-x:hover{color:white;}
+
+/* =============================================
+   CHATBOT
+============================================= */
+#chat-fab{position:fixed;bottom:78px;right:26px;z-index:901;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--magenta),var(--magenta-dark));box-shadow:0 8px 30px rgba(194,24,91,.45);display:flex;align-items:center;justify-content:center;transition:all .3s;animation:fabPulse 3s ease-in-out infinite;}
+#chat-fab:hover{transform:scale(1.1);}
+#chat-fab i{color:white;font-size:22px;}
+@keyframes fabPulse{0%,100%{box-shadow:0 8px 30px rgba(194,24,91,.45),0 0 0 0 rgba(194,24,91,.3);}50%{box-shadow:0 8px 30px rgba(194,24,91,.45),0 0 0 13px rgba(194,24,91,0);}}
+#chatbot{position:fixed;bottom:150px;right:26px;z-index:900;width:350px;background:var(--dark);border:1px solid rgba(212,175,55,.18);box-shadow:0 28px 72px rgba(0,0,0,.5);display:none;flex-direction:column;overflow:hidden;max-height:510px;}
+#chatbot.open{display:flex;}
+.chat-hd{background:linear-gradient(135deg,var(--magenta-dark),#3d0020);padding:17px 18px;display:flex;align-items:center;gap:12px;}
+.chat-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--magenta-light));display:flex;align-items:center;justify-content:center;font-size:18px;color:white;flex-shrink:0;}
+.chat-nm{font-family:'Playfair Display',serif;font-size:15px;color:white;font-weight:400;}
+.chat-st{font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(255,255,255,.45);letter-spacing:1px;}
+.chat-st span{color:#4caf50;}
+.chat-x{margin-left:auto;color:rgba(255,255,255,.35);font-size:15px;transition:color .3s;}
+.chat-x:hover{color:white;}
+.chat-msgs{flex:1;padding:18px 14px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;min-height:250px;}
+.chat-msgs::-webkit-scrollbar{width:3px;}
+.chat-msgs::-webkit-scrollbar-thumb{background:rgba(212,175,55,.18);}
+.cmsg{max-width:86%;display:flex;flex-direction:column;}
+.cmsg.bot{align-self:flex-start;}
+.cmsg.user{align-self:flex-end;}
+.cbub{padding:11px 14px;font-size:14px;line-height:1.6;border-radius:2px;}
+.bot .cbub{background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);}
+.user .cbub{background:var(--magenta);color:white;}
+.ctime{font-family:'Montserrat',sans-serif;font-size:9px;color:rgba(255,255,255,.22);margin-top:3px;letter-spacing:.5px;}
+.bot .ctime{text-align:left;}
+.user .ctime{text-align:right;}
+.chat-quick{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px;}
+.qbtn{padding:5px 12px;border:1px solid rgba(212,175,55,.22);color:rgba(255,255,255,.5);font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:1px;transition:all .3s;border-radius:2px;}
+.qbtn:hover{border-color:var(--gold);color:var(--gold);}
+.chat-inp{display:flex;border-top:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.25);}
+.chat-inp input{flex:1;padding:13px 14px;background:transparent;border:none;outline:none;color:white;font-size:14px;}
+.chat-inp input::placeholder{color:rgba(255,255,255,.28);}
+.chat-send-btn{padding:0 18px;color:var(--gold);font-size:15px;transition:color .3s;}
+.chat-send-btn:hover{color:white;}
+
+/* =============================================
+   CART DRAWER
+============================================= */
+#cart-ov{position:fixed;inset:0;background:rgba(13,13,13,.52);z-index:1100;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;}
+#cart-ov.open{opacity:1;visibility:visible;}
+#cart-drawer{position:fixed;top:0;right:0;bottom:0;width:410px;max-width:95vw;background:var(--cream);z-index:1101;transform:translateX(100%);transition:transform .45s var(--ease);display:flex;flex-direction:column;}
+#cart-drawer.open{transform:translateX(0);}
+.cart-hd{padding:26px 28px 20px;border-bottom:1px solid rgba(0,0,0,.07);display:flex;align-items:center;justify-content:space-between;}
+.cart-hd h2{font-family:'Playfair Display',serif;font-size:23px;font-weight:400;}
+.cart-hd h2 em{font-style:italic;color:var(--magenta);}
+.cart-close{color:var(--text-light);font-size:17px;transition:color .3s;}
+.cart-close:hover{color:var(--magenta);}
+.cart-list{flex:1;overflow-y:auto;padding:18px 28px;}
+.cart-list::-webkit-scrollbar{width:3px;}
+.cart-list::-webkit-scrollbar-thumb{background:rgba(194,24,91,.13);}
+.cart-empty-msg{text-align:center;padding:56px 18px;}
+.cart-empty-msg i{font-size:46px;color:var(--rose);margin-bottom:18px;display:block;}
+.cart-empty-msg p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--text-light);}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(0,0,0,.05);animation:slideIn .3s ease;}
+@keyframes slideIn{from{opacity:0;transform:translateX(18px);}to{opacity:1;transform:translateX(0);}}
+.cart-item-img{width:78px;height:96px;object-fit:cover;flex-shrink:0;background:#f5e6ed;}
+.ci-info{flex:1;min-width:0;}
+.ci-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:400;margin-bottom:4px;}
+.ci-detail{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.5px;color:var(--text-light);margin-bottom:10px;}
+.ci-price{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--magenta);font-weight:600;}
+.ci-qty{display:flex;align-items:center;gap:10px;margin-top:9px;}
+.qty-btn{width:24px;height:24px;border:1px solid rgba(0,0,0,.13);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text);transition:all .3s;}
+.qty-btn:hover{background:var(--magenta);color:white;border-color:var(--magenta);}
+.qty-n{font-family:'Montserrat',sans-serif;font-size:13px;min-width:18px;text-align:center;}
+.ci-rm{color:rgba(0,0,0,.22);font-size:12px;align-self:flex-start;margin-top:3px;transition:color .3s;margin-left:auto;}
+.ci-rm:hover{color:var(--magenta);}
+.cart-ft{padding:20px 28px 28px;border-top:1px solid rgba(0,0,0,.07);}
+.cart-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+.cart-row span{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-light);}
+.cart-row strong{font-family:'Cormorant Garamond',serif;font-size:17px;}
+.cart-total-row{border-top:1px solid rgba(0,0,0,.07);padding-top:13px;margin-top:5px;}
+.cart-total-row span{font-size:13px;color:var(--black);font-family:'Montserrat',sans-serif;font-weight:600;}
+.cart-total-row strong{font-size:21px;color:var(--magenta);}
+.checkout-btn{width:100%;padding:17px;background:var(--magenta);color:white;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:9px;margin-top:18px;margin-bottom:10px;}
+.checkout-btn:hover{background:var(--magenta-dark);}
+.cont-shop{width:100%;padding:13px;text-align:center;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);border:1px solid rgba(0,0,0,.1);transition:all .3s;}
+.cont-shop:hover{border-color:var(--magenta);color:var(--magenta);}
+
+/* =============================================
+   PRODUCT MODAL
+============================================= */
+#modal-ov{position:fixed;inset:0;background:rgba(13,13,13,.72);z-index:1200;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;display:flex;align-items:center;justify-content:center;padding:28px;}
+#modal-ov.open{opacity:1;visibility:visible;}
+.modal-box{background:white;max-width:880px;width:100%;display:grid;grid-template-columns:1fr 1fr;max-height:88vh;overflow:hidden;transform:scale(.93);transition:transform .4s;}
+#modal-ov.open .modal-box{transform:scale(1);}
+.modal-img{background:#f5e6ed;}
+.modal-img img{width:100%;height:100%;max-height:540px;object-fit:cover;}
+.modal-info{padding:46px 40px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto;}
+.modal-cat-lbl{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:9px;}
+.modal-ttl{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;margin-bottom:12px;}
+.modal-pr{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--magenta);font-weight:600;margin-bottom:20px;}
+.modal-desc-txt{font-size:14px;color:var(--text-light);line-height:1.8;margin-bottom:24px;}
+.modal-lbl{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:9px;}
+.modal-sizes{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px;}
+.sz-btn{width:42px;height:42px;border:1px solid rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:10px;transition:all .3s;}
+.sz-btn:hover,.sz-btn.on{background:var(--magenta);color:white;border-color:var(--magenta);}
+.modal-cols{display:flex;gap:9px;margin-bottom:26px;}
+.mcol{width:26px;height:26px;border-radius:50%;border:3px solid white;outline:2px solid transparent;transition:outline-color .2s;}
+.mcol.on{outline-color:var(--magenta);}
+.modal-add-btn{width:100%;padding:16px;background:var(--black);color:white;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:10px;}
+.modal-add-btn:hover{background:var(--magenta);}
+.modal-wish-btn{width:100%;padding:13px;border:1px solid rgba(0,0,0,.11);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);transition:all .3s;display:flex;align-items:center;justify-content:center;gap:7px;}
+.modal-wish-btn:hover{border-color:var(--magenta);color:var(--magenta);}
+.modal-close-btn{position:absolute;top:17px;right:17px;font-size:19px;color:var(--text-light);transition:color .3s;z-index:10;}
+.modal-close-btn:hover{color:var(--magenta);}
+
+/* HAMBURGER & MOBILE MENU */
+.hbar{display:block;width:24px;height:2px;background:white;transition:all .3s;}
+#nav.scrolled .hbar{background:var(--text);}
+#mobile-menu{position:fixed;inset:0;background:var(--dark);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transform:translateX(100%);transition:transform .45s var(--ease);}
+#mobile-menu.open{transform:translateX(0);}
+#mobile-menu a{font-family:'Playfair Display',serif;font-size:34px;font-weight:400;color:white;transition:color .3s;font-style:italic;}
+#mobile-menu a:hover{color:var(--gold);}
+#mobile-menu .close-mobile{position:absolute;top:28px;right:28px;color:rgba(255,255,255,.5);font-size:26px;cursor:none;}
+
+/* SPOTIFY MODAL */
+#spotify-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;display:none;align-items:center;justify-content:center;}
+#spotify-modal.open{display:flex;}
+.spotify-box{background:var(--dark);padding:30px;border:1px solid rgba(212,175,55,.2);width:360px;position:relative;}
+.spotify-box h3{font-family:'Playfair Display',serif;font-size:20px;color:white;margin-bottom:18px;font-weight:400;}
+.spotify-close{position:absolute;top:14px;right:16px;color:rgba(255,255,255,.4);font-size:18px;cursor:none;transition:color .3s;}
+.spotify-close:hover{color:white;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .section{padding:76px 36px;}
+  .products-grid{grid-template-columns:repeat(2,1fr);}
+  .coll-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,280px);}
+  .coll-grid .coll-cell:first-child{grid-row:span 1;grid-column:span 2;}
+  .about-split{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:36px;}
+  .shop-layout{grid-template-columns:200px 1fr;}
+  .shop-grid{grid-template-columns:repeat(2,1fr);}
+  .blog-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  #nav{padding:16px 22px;}
+  #nav.scrolled{padding:11px 22px;}
+  .nav-links{display:none;}
+  #hamburger{display:flex!important;}
+  .section{padding:62px 22px;}
+  .about-txt{padding:60px 26px;}
+  .testi-wrap{padding:72px 22px;}
+  .newsletter-sec{padding:62px 22px;}
+  footer{padding:62px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .shop-layout{grid-template-columns:1fr;padding:30px 22px;}
+  .shop-sidebar{display:none;}
+  .shop-grid{grid-template-columns:repeat(2,1fr);}
+  .blog-grid{grid-template-columns:1fr;}
+  .modal-box{grid-template-columns:1fr;}
+  .modal-img{max-height:240px;}
+  #cart-drawer{width:100%;}
+  #chatbot{width:calc(100vw - 36px);right:18px;}
+  .coll-grid{grid-template-columns:1fr;grid-template-rows:auto;}
+  .coll-cell{min-height:260px;}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-mono">GM</div>
+  <div class="ld-line"></div>
+  <div class="ld-text">GraciasMedina Designs</div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <button class="close-mobile" onclick="toggleMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+  <a href="#" onclick="event.preventDefault();toggleMobileMenu();showPage('home')">Home</a>
+  <a href="#" onclick="event.preventDefault();toggleMobileMenu();showPage('shop')">Shop</a>
+  <a href="#" onclick="event.preventDefault();toggleMobileMenu();showPage('blog')">Blog</a>
+  <a href="#" onclick="event.preventDefault();toggleMobileMenu();showPage('about')">About</a>
+  <a href="#" onclick="event.preventDefault();toggleMobileMenu();showPage('contact')">Contact</a>
+</div>
+
+<!-- SPOTIFY MODAL -->
+<div id="spotify-modal" onclick="closeSpotify(event)">
+  <div class="spotify-box">
+    <h3>🎵 GraciasMedina Playlist</h3>
+    <button class="spotify-close" onclick="closeSpotify()"><i class="fa-solid fa-xmark"></i></button>
+    <iframe style="border-radius:4px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4sWSpwq3LiO?utm_source=generator&theme=0" width="100%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <p style="margin-top:14px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.35);text-align:center">Connect your Spotify for full playback</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo" onclick="showPage('home')">GraciasMedina<span>.</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#" onclick="event.preventDefault();showPage('home')" class="nav-link active" data-page="home">Home</a></li>
+    <li><a href="#" onclick="event.preventDefault();showPage('shop')" class="nav-link" data-page="shop">Shop</a></li>
+    <li><a href="#" onclick="event.preventDefault();showPage('blog')" class="nav-link" data-page="blog">Blog</a></li>
+    <li><a href="#" onclick="event.preventDefault();showPage('about')" class="nav-link" data-page="about">About</a></li>
+    <li><a href="#" onclick="event.preventDefault();showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
+  </ul>
+  <!-- Hamburger for mobile -->
+  <button id="hamburger" onclick="toggleMobileMenu()" style="display:none;flex-direction:column;gap:5px;padding:6px;z-index:10">
+    <span class="hbar"></span><span class="hbar"></span><span class="hbar"></span>
+  </button>
+  <div class="nav-icons">
+    <button class="nav-icon-btn" onclick="toggleChat()"><i class="fa-regular fa-comment-dots"></i></button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-heart"></i></button>
+    <button class="nav-icon-btn" onclick="openCart()" style="position:relative">
+      <i class="fa-regular fa-bag-shopping"></i>
+      <span class="cart-badge" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-slides">
+      <div class="hero-slide on" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1600&q=90')"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1600&q=90')"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1600&q=90')"></div>
+    </div>
+    <div class="hero-ov"></div>
+    <div class="hero-content">
+      <p class="hero-eye">✦ New Collection 2025 ✦</p>
+      <h1 class="hero-h1">Where Culture<br>Meets <span class="hero-script">Couture</span></h1>
+      <p class="hero-sub">Handcrafted dresses, gowns &amp; bags — born from heritage, worn by queens.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-hero-primary" onclick="event.preventDefault();showPage('shop')">Explore Collection</a>
+        <a href="#" class="btn-hero-outline" onclick="event.preventDefault();showPage('about')">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marquee">
+      <span>Handcrafted</span><span class="dot">✦</span><span>One of a Kind</span><span class="dot">✦</span><span>GraciasMedina Designs</span><span class="dot">✦</span><span>Dresses &amp; Gowns</span><span class="dot">✦</span><span>Luxury Bags</span><span class="dot">✦</span><span>Cultural Heritage</span><span class="dot">✦</span><span>Bespoke &amp; Beautiful</span><span class="dot">✦</span>
+      <span>Handcrafted</span><span class="dot">✦</span><span>One of a Kind</span><span class="dot">✦</span><span>GraciasMedina Designs</span><span class="dot">✦</span><span>Dresses &amp; Gowns</span><span class="dot">✦</span><span>Luxury Bags</span><span class="dot">✦</span><span>Cultural Heritage</span><span class="dot">✦</span><span>Bespoke &amp; Beautiful</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- New Arrivals -->
+  <section class="section" style="background:var(--cream)">
+    <div class="sec-header reveal">
+      <div><span class="section-eye">✦ Just Arrived</span><h2 class="section-title">New <em>Arrivals</em></h2></div>
+      <a href="#" class="view-all" onclick="event.preventDefault();showPage('shop')">View All →</a>
+    </div>
+    <div class="products-grid" id="home-products"></div>
+  </section>
+
+  <!-- Collections -->
+  <section class="section" style="background:white;">
+    <div class="reveal" style="text-align:center">
+      <span class="section-eye" style="display:block;text-align:center">✦ Curated for You</span>
+      <h2 class="section-title" style="text-align:center">Explore the <em>Collections</em></h2>
+    </div>
+    <div class="coll-grid">
+      <div class="coll-cell revL">
+        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=85" alt="Evening Gowns">
+        <div class="coll-ov"><span class="coll-lbl">Signature Series</span><h3 class="coll-ttl">Evening<br>Gowns</h3><a href="#" class="coll-link" onclick="event.preventDefault();showPage('shop')">Shop Now →</a></div>
+      </div>
+      <div class="coll-cell revR d1">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&q=85" alt="Floral Dresses">
+        <div class="coll-ov"><span class="coll-lbl">Everyday Luxe</span><h3 class="coll-ttl">Floral<br>Dresses</h3><a href="#" class="coll-link" onclick="event.preventDefault();showPage('shop')">Shop Now →</a></div>
+      </div>
+      <div class="coll-cell revR d2">
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&q=85" alt="Luxury Bags">
+        <div class="coll-ov"><span class="coll-lbl">Accessories</span><h3 class="coll-ttl">Luxury<br>Bags</h3><a href="#" class="coll-link" onclick="event.preventDefault();showPage('shop')">Shop Now →</a></div>
+      </div>
+      <div class="coll-cell revR d3">
+        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700&q=85" alt="Bridal">
+        <div class="coll-ov"><span class="coll-lbl">Bridal &amp; Formal</span><h3 class="coll-ttl">Bridal<br>Collection</h3><a href="#" class="coll-link" onclick="event.preventDefault();showPage('shop')">Shop Now →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <div class="about-split">
+    <div class="about-img revL"><img src="https://images.unsplash.com/photo-1551803091-e20673f15770?w=800&q=85" alt="GraciasMedina"><div class="about-img-ov"></div></div>
+    <div class="about-txt revR">
+      <p class="ab-eye">✦ The Designer</p>
+      <h2 class="ab-h2">Crafted with <em>Soul</em>,<br>Worn with <em>Pride</em></h2>
+      <p class="ab-body">Every stitch tells a story. GraciasMedina is an independent designer whose work is rooted in cultural heritage, feminine power, and fearless beauty. From hand-sewn gowns that flow like poetry to structured bags that command a room — her pieces aren't made, they're born.</p>
+      <div class="ab-sig">GraciasMedina</div>
+      <div class="ab-stats">
+        <div><div class="ab-stat-num">200+</div><div class="ab-stat-lbl">Bespoke Pieces</div></div>
+        <div><div class="ab-stat-num">8</div><div class="ab-stat-lbl">Years of Craft</div></div>
+        <div><div class="ab-stat-num">100%</div><div class="ab-stat-lbl">Handmade</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="testi-wrap">
+    <div class="testi-inner">
+      <span class="section-eye" style="color:var(--gold);display:block;text-align:center">✦ Client Love</span>
+      <h2 class="section-title" style="text-align:center;color:white">What Our <em style="color:var(--magenta-light)">Queens</em> Say</h2>
+      <div class="testi-slider">
+        <div class="testi-item on"><div class="testi-stars">★★★★★</div><p class="testi-quote">"I wore a GraciasMedina gown to my daughter's quinceañera and every single person asked who designed it. I felt like royalty. This dress is a work of art."</p><p class="testi-author">— Maria Elena Vásquez, Miami</p></div>
+        <div class="testi-item"><div class="testi-stars">★★★★★</div><p class="testi-quote">"The craftsmanship is unlike anything I've seen. My bag arrived beautifully packaged, the leather is buttery soft, and the detail work is breathtaking. Worth every penny."</p><p class="testi-author">— Jasmine Cooper, New York</p></div>
+        <div class="testi-item"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Custom order experience was seamless and personal. She understood my vision immediately and delivered something beyond what I even imagined. I will be a customer forever."</p><p class="testi-author">— Sofía Herrera, Los Angeles</p></div>
+      </div>
+      <div class="testi-dots"><div class="tdot on" onclick="goT(0)"></div><div class="tdot" onclick="goT(1)"></div><div class="tdot" onclick="goT(2)"></div></div>
+    </div>
+  </div>
+
+  <!-- Blog Preview -->
+  <section class="section" style="background:var(--cream)">
+    <div class="sec-header reveal">
+      <div><span class="section-eye">✦ The Journal</span><h2 class="section-title">Style, Stories <em>&amp; Soul</em></h2></div>
+      <a href="#" class="view-all" onclick="event.preventDefault();showPage('blog')">Read More →</a>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-card reveal d1">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=700&q=85" alt="Blog 1" loading="lazy"></div>
+        <div class="blog-body"><span class="blog-cat-tag">Designer Diaries</span><h3 class="blog-ttl">How a Single Fabric Started a Movement</h3><p class="blog-exc">The day I found the silk — dusty, forgotten in a market corner — I knew it was meant to become something extraordinary...</p><div class="blog-meta"><i class="fa-regular fa-calendar"></i> Jan 12, 2025 · <i class="fa-regular fa-clock"></i> 4 min</div></div>
+      </article>
+      <article class="blog-card reveal d2">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85" alt="Blog 2" loading="lazy"></div>
+        <div class="blog-body"><span class="blog-cat-tag">Style Guide</span><h3 class="blog-ttl">The Ultimate Guide to Styling a Statement Gown</h3><p class="blog-exc">A jaw-dropping gown deserves the right accessories — and nothing more. Here's how to let the dress do all the talking...</p><div class="blog-meta"><i class="fa-regular fa-calendar"></i> Feb 3, 2025 · <i class="fa-regular fa-clock"></i> 6 min</div></div>
+      </article>
+      <article class="blog-card reveal d3">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=85" alt="Blog 3" loading="lazy"></div>
+        <div class="blog-body"><span class="blog-cat-tag">Behind the Seams</span><h3 class="blog-ttl">A Day Inside the Atelier: Where Magic Happens</h3><p class="blog-exc">Step inside the studio where every piece begins: the mood boards, the swatches, and the first cut of fabric...</p><div class="blog-meta"><i class="fa-regular fa-calendar"></i> Feb 18, 2025 · <i class="fa-regular fa-clock"></i> 5 min</div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <div class="newsletter-sec">
+    <p class="nl-title">Join the Circle of <em>Grace</em></p>
+    <p class="nl-sub">New drops, exclusive access &amp; stories from the atelier — straight to your inbox.</p>
+    <form class="nl-form" onsubmit="subEmail(event)">
+      <input type="email" placeholder="Your email address..." required>
+      <button type="submit"><i class="fa-regular fa-paper-plane"></i> Subscribe</button>
+    </form>
+  </div>
+
+</div><!-- end page-home -->
+
+<!-- ═══════════════════════════════════════════
+     SHOP PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-shop">
+  <div class="page-hero">
+    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1400&q=85" alt="Shop">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eye">✦ All Pieces</span>
+      <h1 class="page-hero-title">The Collection</h1>
+    </div>
+  </div>
+  <div class="shop-layout">
+    <aside class="shop-sidebar">
+      <div class="filter-group">
+        <p class="filter-ttl">Category</p>
+        <div class="filter-list">
+          <label class="filter-opt"><input type="checkbox" checked onchange="filterProducts()"> <label>All</label></label>
+          <label class="filter-opt"><input type="checkbox" onchange="filterProducts()"> <label>Evening Gowns</label></label>
+          <label class="filter-opt"><input type="checkbox" onchange="filterProducts()"> <label>Dresses</label></label>
+          <label class="filter-opt"><input type="checkbox" onchange="filterProducts()"> <label>Bags</label></label>
+          <label class="filter-opt"><input type="checkbox" onchange="filterProducts()"> <label>Bridal</label></label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <p class="filter-ttl">Price Range</p>
+        <div class="price-range">
+          <input type="range" min="0" max="1000" value="1000" oninput="updatePrice(this)">
+          <div class="price-row"><span>$0</span><span id="price-max">$1,000</span></div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <p class="filter-ttl">Size</p>
+        <div class="filter-list">
+          <label class="filter-opt"><input type="checkbox"> <label>XS</label></label>
+          <label class="filter-opt"><input type="checkbox"> <label>S</label></label>
+          <label class="filter-opt"><input type="checkbox"> <label>M</label></label>
+          <label class="filter-opt"><input type="checkbox"> <label>L</label></label>
+          <label class="filter-opt"><input type="checkbox"> <label>XL</label></label>
+        </div>
+      </div>
+    </aside>
+    <div>
+      <div class="shop-products-header">
+        <span class="shop-count" id="shop-count">8 pieces</span>
+        <div class="shop-sort">
+          <select><option>Newest</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Most Popular</option></select>
+        </div>
+      </div>
+      <div class="shop-grid" id="shop-products"></div>
+    </div>
+  </div>
+  <div class="newsletter-sec" style="margin-top:0">
+    <p class="nl-title">Join the Circle of <em>Grace</em></p>
+    <p class="nl-sub">Be first to know about new arrivals and exclusive drops.</p>
+    <form class="nl-form" onsubmit="subEmail(event)"><input type="email" placeholder="Your email..." required><button type="submit">Subscribe</button></form>
+  </div>
+</div><!-- end page-shop -->
+
+<!-- ═══════════════════════════════════════════
+     BLOG PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-blog">
+  <div class="page-hero">
+    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1400&q=85" alt="Blog">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eye">✦ Stories &amp; Style</span>
+      <h1 class="page-hero-title">The Journal</h1>
+    </div>
+  </div>
+
+  <!-- Blog Listing -->
+  <div id="blog-listing">
+    <section class="section" style="background:var(--cream)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px" id="blog-cards"></div>
+    </section>
+  </div>
+
+  <!-- Individual Blog Post View -->
+  <div id="blog-post-view" style="display:none">
+    <div style="max-width:820px;margin:0 auto;padding:80px 40px 100px">
+      <button onclick="closeBlogPost()" style="display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--magenta);margin-bottom:48px;cursor:none;transition:opacity .3s">← Back to Journal</button>
+      <span class="blog-cat-tag" id="post-cat"></span>
+      <h1 id="post-title" style="font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);font-weight:400;line-height:1.2;margin:20px 0 16px"></h1>
+      <div style="display:flex;align-items:center;gap:20px;margin-bottom:40px;font-family:'Montserrat',sans-serif;font-size:11px;color:var(--text-light);letter-spacing:1px">
+        <span id="post-date"></span><span>·</span><span id="post-read"></span><span>·</span><span>By GraciasMedina</span>
+      </div>
+      <img id="post-img" src="" alt="" style="width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:48px">
+      <div id="post-body" style="font-size:18px;line-height:1.95;color:var(--text)"></div>
+      <div style="margin-top:60px;padding-top:40px;border-top:1px solid rgba(0,0,0,.08)">
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:16px">Share this post</p>
+        <div style="display:flex;gap:12px">
+          <a href="#" style="width:38px;height:38px;border:1px solid rgba(0,0,0,.13);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text-light);transition:all .3s" onmouseover="this.style.borderColor='#C2185B';this.style.color='#C2185B'" onmouseout="this.style.borderColor='rgba(0,0,0,.13)';this.style.color='var(--text-light)'"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" style="width:38px;height:38px;border:1px solid rgba(0,0,0,.13);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text-light);transition:all .3s" onmouseover="this.style.borderColor='#C2185B';this.style.color='#C2185B'" onmouseout="this.style.borderColor='rgba(0,0,0,.13)';this.style.color='var(--text-light)'"><i class="fa-brands fa-pinterest"></i></a>
+          <a href="#" style="width:38px;height:38px;border:1px solid rgba(0,0,0,.13);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text-light);transition:all .3s" onmouseover="this.style.borderColor='#C2185B';this.style.color='#C2185B'" onmouseout="this.style.borderColor='rgba(0,0,0,.13)';this.style.color='var(--text-light)'"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="newsletter-sec"><p class="nl-title">Never Miss a Story</p><p class="nl-sub">Get the journal delivered to your inbox every week.</p><form class="nl-form" onsubmit="subEmail(event)"><input type="email" placeholder="Your email..." required><button type="submit">Subscribe</button></form></div>
+</div><!-- end page-blog -->
+
+<!-- ═══════════════════════════════════════════
+     ABOUT PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="page-hero">
+    <img src="https://images.unsplash.com/photo-1551803091-e20673f15770?w=1400&q=85" alt="About">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eye">✦ Our Story</span>
+      <h1 class="page-hero-title">About GraciasMedina</h1>
+    </div>
+  </div>
+
+  <!-- Designer Story -->
+  <section class="section" style="background:white">
+    <div style="max-width:900px;margin:0 auto;text-align:center">
+      <span class="section-eye" style="display:block;text-align:center">✦ The Woman Behind the Brand</span>
+      <h2 class="section-title reveal" style="text-align:center">Born from <em>Passion</em>,<br>Built on <em>Heritage</em></h2>
+      <p class="reveal" style="font-size:19px;line-height:1.9;color:var(--text-light);margin-bottom:32px;font-style:italic">"Fashion is not just fabric and thread — it is a language. I design for women who want to speak without words."</p>
+      <p class="reveal" style="font-size:17px;line-height:1.9;color:var(--text);margin-bottom:24px">GraciasMedina began her journey surrounded by the vibrant textiles and rich traditions of her culture. From watching her grandmother embroider by lamplight to studying pattern-making and draping, her path was always toward the artisan. Every piece she creates carries that lineage — the colors, the textures, the stories.</p>
+      <p class="reveal" style="font-size:17px;line-height:1.9;color:var(--text)">Today, GraciasMedina Designs is recognized for its bold femininity, meticulous handwork, and the unmistakable feeling of wearing something truly one-of-a-kind. Each piece is made to order in her private atelier, with deep intention and love.</p>
+    </div>
+  </section>
+
+  <!-- About Image Grid -->
+  <section style="padding:0 60px 80px;background:white">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=85" alt="" style="aspect-ratio:3/4;object-fit:cover;width:100%">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=85" alt="" style="aspect-ratio:3/4;object-fit:cover;width:100%">
+      <img src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=600&q=85" alt="" style="aspect-ratio:3/4;object-fit:cover;width:100%">
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section" style="background:var(--cream)">
+    <div style="text-align:center;margin-bottom:56px">
+      <span class="section-eye" style="display:block;text-align:center">✦ What We Stand For</span>
+      <h2 class="section-title" style="text-align:center">Our <em>Values</em></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px">
+      <div class="reveal d1" style="text-align:center;padding:40px 28px;background:white">
+        <div style="font-size:36px;margin-bottom:16px">✦</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:12px;color:var(--magenta)">Handcrafted</h3>
+        <p style="font-size:15px;color:var(--text-light);line-height:1.8">Every stitch, every seam, every embellishment is completed by hand. No shortcuts. No mass production. Just pure craft.</p>
+      </div>
+      <div class="reveal d2" style="text-align:center;padding:40px 28px;background:white">
+        <div style="font-size:36px;margin-bottom:16px">♥</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:12px;color:var(--magenta)">Intentional</h3>
+        <p style="font-size:15px;color:var(--text-light);line-height:1.8">We design with purpose. Every color, silhouette, and texture is chosen to honor the woman who will wear it and the culture that inspired it.</p>
+      </div>
+      <div class="reveal d3" style="text-align:center;padding:40px 28px;background:white">
+        <div style="font-size:36px;margin-bottom:16px">★</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:12px;color:var(--magenta)">Empowering</h3>
+        <p style="font-size:15px;color:var(--text-light);line-height:1.8">Our pieces are made for women who own the room. Who stand tall. Who embrace their beauty without apology. That is the GraciasMedina woman.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section" style="background:var(--dark)">
+    <div style="text-align:center;margin-bottom:60px">
+      <span class="section-eye" style="color:var(--gold);display:block;text-align:center">✦ The Journey</span>
+      <h2 class="section-title" style="text-align:center;color:white">Our <em style="color:var(--magenta-light)">Story</em> So Far</h2>
+    </div>
+    <div style="max-width:700px;margin:0 auto;position:relative">
+      <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(212,175,55,.2);transform:translateX(-50%)"></div>
+      <div style="display:flex;flex-direction:column;gap:48px">
+        <div class="reveal" style="display:flex;gap:32px;align-items:flex-start">
+          <div style="flex:1;text-align:right;padding-right:32px"><span style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);display:block;margin-bottom:8px">2016</span><h4 style="font-family:'Playfair Display',serif;font-size:18px;color:white;margin-bottom:8px">The First Stitch</h4><p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7">GraciasMedina sewed her first gown for a family quinceañera. The response was overwhelming — and the brand was born.</p></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px;border:3px solid var(--dark)"></div>
+          <div style="flex:1;padding-left:32px"></div>
+        </div>
+        <div class="reveal" style="display:flex;gap:32px;align-items:flex-start">
+          <div style="flex:1;padding-right:32px"></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:var(--magenta);flex-shrink:0;margin-top:4px;border:3px solid var(--dark)"></div>
+          <div style="flex:1;padding-left:32px"><span style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);display:block;margin-bottom:8px">2019</span><h4 style="font-family:'Playfair Display',serif;font-size:18px;color:white;margin-bottom:8px">First Collection Launch</h4><p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7">The debut collection — 12 handcrafted gowns — sold out in 48 hours. A sign of things to come.</p></div>
+        </div>
+        <div class="reveal" style="display:flex;gap:32px;align-items:flex-start">
+          <div style="flex:1;text-align:right;padding-right:32px"><span style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);display:block;margin-bottom:8px">2022</span><h4 style="font-family:'Playfair Display',serif;font-size:18px;color:white;margin-bottom:8px">Bags &amp; Accessories</h4><p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7">Expanding into leather goods, GraciasMedina launched her signature bag collection — instantly beloved.</p></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px;border:3px solid var(--dark)"></div>
+          <div style="flex:1;padding-left:32px"></div>
+        </div>
+        <div class="reveal" style="display:flex;gap:32px;align-items:flex-start">
+          <div style="flex:1;padding-right:32px"></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:var(--magenta);flex-shrink:0;margin-top:4px;border:3px solid var(--dark)"></div>
+          <div style="flex:1;padding-left:32px"><span style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);display:block;margin-bottom:8px">2025</span><h4 style="font-family:'Playfair Display',serif;font-size:18px;color:white;margin-bottom:8px">Going Global</h4><p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7">GraciasMedina Designs launches worldwide shipping and our first online flagship — bringing couture to every corner of the world.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="newsletter-sec"><p class="nl-title">Be Part of the <em>Story</em></p><p class="nl-sub">Join our community of women who wear their culture with pride.</p><form class="nl-form" onsubmit="subEmail(event)"><input type="email" placeholder="Your email..." required><button type="submit">Join Us</button></form></div>
+</div><!-- end page-about -->
+
+<!-- ═══════════════════════════════════════════
+     CONTACT PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="page-hero">
+    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&q=85" alt="Contact">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eye">✦ Get in Touch</span>
+      <h1 class="page-hero-title">Contact Us</h1>
+    </div>
+  </div>
+  <section class="section" style="background:white">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1100px;margin:0 auto;align-items:start">
+      <!-- Contact Info -->
+      <div>
+        <span class="section-eye">✦ Reach Out</span>
+        <h2 class="section-title">Let's <em>Connect</em></h2>
+        <p style="font-size:17px;color:var(--text-light);line-height:1.8;margin-bottom:40px">Whether you're interested in a custom piece, a wholesale inquiry, or simply want to say hello — we'd love to hear from you. GraciasMedina reads every message personally.</p>
+        <div style="display:flex;flex-direction:column;gap:28px">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:48px;height:48px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--magenta);font-size:18px;flex-shrink:0"><i class="fa-regular fa-envelope"></i></div>
+            <div><p style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px">Email</p><p style="font-size:16px;color:var(--text)">hello@graciasmedinadesigns.com</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:48px;height:48px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--magenta);font-size:18px;flex-shrink:0"><i class="fa-regular fa-clock"></i></div>
+            <div><p style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px">Response Time</p><p style="font-size:16px;color:var(--text)">Within 24–48 hours</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:48px;height:48px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--magenta);font-size:18px;flex-shrink:0"><i class="fa-solid fa-scissors"></i></div>
+            <div><p style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px">Custom Orders</p><p style="font-size:16px;color:var(--text)">4–6 weeks lead time</p></div>
+          </div>
+        </div>
+        <div style="margin-top:40px">
+          <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:16px">Follow the Journey</p>
+          <div style="display:flex;gap:12px">
+            <a href="#" class="soc-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="soc-btn"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="soc-btn"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="#" class="soc-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Contact Form -->
+      <div>
+        <form onsubmit="submitContact(event)" style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div>
+              <label style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:8px">First Name</label>
+              <input type="text" required style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);background:white;outline:none;font-size:15px;color:var(--text);transition:border-color .3s" onfocus="this.style.borderColor='#C2185B'" onblur="this.style.borderColor='rgba(0,0,0,.12)'" placeholder="Maria">
+            </div>
+            <div>
+              <label style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:8px">Last Name</label>
+              <input type="text" required style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);background:white;outline:none;font-size:15px;color:var(--text);transition:border-color .3s" onfocus="this.style.borderColor='#C2185B'" onblur="this.style.borderColor='rgba(0,0,0,.12)'" placeholder="Vásquez">
+            </div>
+          </div>
+          <div>
+            <label style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:8px">Email</label>
+            <input type="email" required style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);background:white;outline:none;font-size:15px;color:var(--text);transition:border-color .3s" onfocus="this.style.borderColor='#C2185B'" onblur="this.style.borderColor='rgba(0,0,0,.12)'" placeholder="maria@example.com">
+          </div>
+          <div>
+            <label style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:8px">Subject</label>
+            <select style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);background:white;outline:none;font-size:15px;color:var(--text);appearance:none">
+              <option>General Inquiry</option>
+              <option>Custom Order</option>
+              <option>Wholesale / Press</option>
+              <option>Returns &amp; Refunds</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:8px">Message</label>
+            <textarea required rows="5" style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);background:white;outline:none;font-size:15px;color:var(--text);resize:vertical;transition:border-color .3s" onfocus="this.style.borderColor='#C2185B'" onblur="this.style.borderColor='rgba(0,0,0,.12)'" placeholder="Tell us about your dream piece or how we can help..."></textarea>
+          </div>
+          <button type="submit" class="btn-magenta" style="width:100%;justify-content:center;padding:17px"><i class="fa-regular fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Refunds Section -->
+  <section class="section" style="background:var(--cream)">
+    <div style="max-width:860px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:48px">
+        <span class="section-eye" style="display:block;text-align:center">✦ Hassle-Free</span>
+        <h2 class="section-title" style="text-align:center">Returns &amp; <em>Refunds</em></h2>
+        <p style="font-size:17px;color:var(--text-light);font-style:italic">Your satisfaction is our priority. We make returns easy.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:52px">
+        <div style="background:white;padding:28px;text-align:center"><div style="font-size:28px;color:var(--magenta);margin-bottom:12px"><i class="fa-regular fa-calendar-check"></i></div><h4 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:400;margin-bottom:8px">30-Day Window</h4><p style="font-size:14px;color:var(--text-light);line-height:1.7">Returns accepted within 30 days of delivery on unworn, original-condition items.</p></div>
+        <div style="background:white;padding:28px;text-align:center"><div style="font-size:28px;color:var(--magenta);margin-bottom:12px"><i class="fa-solid fa-rotate-left"></i></div><h4 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:400;margin-bottom:8px">Fast Refunds</h4><p style="font-size:14px;color:var(--text-light);line-height:1.7">Refunds processed to your original payment method within 3–5 business days of approval.</p></div>
+        <div style="background:white;padding:28px;text-align:center"><div style="font-size:28px;color:var(--magenta);margin-bottom:12px"><i class="fa-regular fa-comments"></i></div><h4 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:400;margin-bottom:8px">Personal Support</h4><p style="font-size:14px;color:var(--text-light);line-height:1.7">Every return is handled personally. We'll work with you to find the right solution.</p></div>
+      </div>
+      <!-- Refund Form -->
+      <div style="background:white;padding:48px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:400;margin-bottom:28px;text-align:center">Request a <em style="color:var(--magenta)">Refund</em></h3>
+        <form onsubmit="submitRefund(event)" style="display:flex;flex-direction:column;gap:18px;max-width:560px;margin:0 auto">
+          <input type="text" placeholder="Order Number (e.g. GM-00123)" required style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);outline:none;font-size:15px;font-family:'Cormorant Garamond',serif" onfocus="this.style.borderColor='#C2185B'" onblur="this.style.borderColor='rgba(0,0,0,.12)'">
+          <input type="email" placeholder="Email used at checkout" required style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);outline:none;font-size:15px;font-family:'Cormorant Garamond',serif" onfocus="this.style.borderColor='#C2185B'" onblur="this.style.borderColor='rgba(0,0,0,.12)'">
+          <select style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);outline:none;font-size:15px;color:var(--text);background:white">
+            <option>Reason for Return</option>
+            <option>Item not as described</option>
+            <option>Wrong size</option>
+            <option>Changed my mind</option>
+            <option>Quality issue</option>
+            <option>Other</option>
+          </select>
+          <textarea rows="3" placeholder="Additional details (optional)..." style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);outline:none;font-size:15px;font-family:'Cormorant Garamond',serif;resize:vertical" onfocus="this.style.borderColor='#C2185B'" onblur="this.style.borderColor='rgba(0,0,0,.12)'"></textarea>
+          <button type="submit" class="btn-magenta" style="justify-content:center;padding:16px"><i class="fa-solid fa-rotate-left"></i> Submit Refund Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div><!-- end page-contact -->
+
+<!-- ═══════════════════════════════════════════
+     FOOTER (always visible)
+═══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">GraciasMedina<span>.</span></div>
+      <p class="footer-desc">Handcrafted luxury dresses, gowns &amp; bags rooted in cultural heritage and feminine power. Made with love, worn with pride.</p>
+      <div class="footer-social">
+        <a href="#" class="soc-btn"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="soc-btn"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="soc-btn"><i class="fa-brands fa-pinterest"></i></a>
+        <a href="#" class="soc-btn"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+    </div>
+    <div class="fc">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#" onclick="event.preventDefault();showPage('shop')">New Arrivals</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('shop')">Dresses</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('shop')">Gowns</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('shop')">Bags</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('shop')">Bridal</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#" onclick="event.preventDefault();showPage('contact')">Shipping Info</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('contact')">Returns &amp; Refunds</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('contact')">Custom Orders</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('contact')">FAQ</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('contact')">Size Guide</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Brand</h4>
+      <ul>
+        <li><a href="#" onclick="event.preventDefault();showPage('about')">Our Story</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('blog')">The Journal</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('contact')">Press</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('contact')">Wholesale</a></li>
+        <li><a href="#" onclick="event.preventDefault();showPage('contact')">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 GraciasMedina Designs. All rights reserved.</p>
+    <p>Crafted with ♥ &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Terms of Service</p>
+  </div>
+</footer>
+
+<!-- MUSIC TOGGLE -->
+<button id="music-toggle" onclick="toggleMusic()" title="Music Player"><i class="fa-solid fa-music"></i></button>
+
+<!-- MUSIC PLAYER -->
+<div id="music-player">
+  <img class="mp-cover" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=80&q=80" alt="cover">
+  <div class="mp-info"><div class="mp-track" id="mp-track">Runway Flow — Ambient Session</div><div class="mp-artist">GraciasMedina ✦ Curated Playlist</div></div>
+  <div class="mp-ctrl">
+    <button class="mp-btn" onclick="prevT()"><i class="fa-solid fa-backward-step"></i></button>
+    <button class="mp-btn mp-play" id="mp-play" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
+    <button class="mp-btn" onclick="nextT()"><i class="fa-solid fa-forward-step"></i></button>
+  </div>
+  <div class="mp-bar-wrap"><div class="mp-bar"><div class="mp-fill" id="mp-fill"></div></div></div>
+  <div class="mp-src">
+    <button class="mp-src-btn on" onclick="openSpotify()"><i class="fa-brands fa-spotify"></i> Open Spotify</button>
+    <button class="mp-src-btn" onclick="setSrc('apple',this)"><i class="fa-brands fa-apple"></i> Apple Music</button>
+  </div>
+  <button class="mp-x" onclick="toggleMusic()"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<!-- CHAT FAB -->
+<button id="chat-fab" onclick="toggleChat()"><i class="fa-solid fa-wand-sparkles"></i></button>
+
+<!-- CHATBOT -->
+<div id="chatbot">
+  <div class="chat-hd">
+    <div class="chat-av">✦</div>
+    <div><div class="chat-nm">Grace — Style Assistant</div><div class="chat-st"><span>●</span> Online Now</div></div>
+    <button class="chat-x" onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div class="cmsg bot"><div class="cbub">Hello, beautiful! 🌸 I'm Grace, your personal style consultant at GraciasMedina Designs. I'm here to help you find your perfect piece. What can I help you discover today?</div><div class="ctime">Just now</div></div>
+  </div>
+  <div class="chat-quick">
+    <button class="qbtn" onclick="qChat('Show me gowns')">👗 Gowns</button>
+    <button class="qbtn" onclick="qChat('I need a bag')">👜 Bags</button>
+    <button class="qbtn" onclick="qChat('Shipping info')">📦 Shipping</button>
+    <button class="qbtn" onclick="qChat('Refund policy')">↩ Refunds</button>
+    <button class="qbtn" onclick="qChat('Custom order')">✨ Custom</button>
+  </div>
+  <div class="chat-inp">
+    <input type="text" id="chat-in" placeholder="Ask Grace anything..." onkeypress="chatKey(event)">
+    <button class="chat-send-btn" onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- CART -->
+<div id="cart-ov" onclick="closeCart()"></div>
+<div id="cart-drawer">
+  <div class="cart-hd"><h2>Your <em>Bag</em></h2><button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="cart-list" id="cart-list"></div>
+  <div class="cart-ft" id="cart-ft" style="display:none">
+    <div class="cart-row"><span>Subtotal</span><strong id="c-sub">$0.00</strong></div>
+    <div class="cart-row"><span>Shipping</span><strong>At checkout</strong></div>
+    <div class="cart-row cart-total-row"><span>Total</span><strong id="c-tot">$0.00</strong></div>
+    <button class="checkout-btn"><i class="fa-solid fa-lock"></i> Secure Checkout</button>
+    <button class="cont-shop" onclick="closeCart()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-ov" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-img"><img id="m-img" src="" alt=""></div>
+    <div class="modal-info">
+      <p class="modal-cat-lbl" id="m-cat"></p>
+      <h2 class="modal-ttl" id="m-name"></h2>
+      <p class="modal-pr" id="m-price"></p>
+      <p class="modal-desc-txt" id="m-desc"></p>
+      <p class="modal-lbl">Size</p>
+      <div class="modal-sizes" id="m-sizes"></div>
+      <p class="modal-lbl">Color</p>
+      <div class="modal-cols" id="m-cols"></div>
+      <button class="modal-add-btn" id="m-add"><i class="fa-regular fa-bag-shopping"></i> Add to Bag</button>
+      <button class="modal-wish-btn"><i class="fa-regular fa-heart"></i> Save to Wishlist</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══ PRODUCT DATA ═══
+const PRODUCTS = [
+  {id:1,name:"La Rosa Gown",cat:"Evening Gown",price:485,badge:"New",img:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80",img2:"https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80",colors:["#C2185B","#1a0a0f","#D4AF37"],sizes:["XS","S","M","L","XL"],desc:"A sweeping floor-length gown in pure silk charmeuse, hand-finished with delicate ruching at the waist. Designed for the woman who commands any room she enters."},
+  {id:2,name:"Alma Maxi Dress",cat:"Dress",price:285,badge:"Bestseller",badgeGold:true,img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80",img2:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",colors:["#F8BBD0","#6A1B9A","#2E7D32"],sizes:["XS","S","M","L"],desc:"Effortlessly feminine. The Alma flows in lightweight crepe with a flutter-sleeve silhouette, hand-embroidered at the neckline with vintage-inspired florals."},
+  {id:3,name:"Corazón Clutch",cat:"Bag",price:195,badge:"New",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80",img2:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80",colors:["#C2185B","#0D0D0D","#D4AF37"],sizes:["One Size"],desc:"A structured evening clutch in full-grain leather with a jewel-tone satin lining. Hand-stitched edges and a custom gold clasp bearing the GM monogram."},
+  {id:4,name:"Magnolia Bridal Gown",cat:"Bridal",price:895,badge:"Limited",img:"https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=600&q=80",img2:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80",colors:["#FFF8F0","#F8BBD0","#D4AF37"],sizes:["XS","S","M","L","XL","XXL"],desc:"Our most coveted piece. The Magnolia is an A-line bridal gown in French tulle with hand-sewn pearl detailing across the bodice. Made to order."},
+  {id:5,name:"Violeta Midi Dress",cat:"Dress",price:320,badge:"New",img:"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80",img2:"https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&q=80",colors:["#6A1B9A","#C2185B","#FFF8F0"],sizes:["XS","S","M","L"],desc:"The Violeta midi is drama and elegance in one. Deep violet silk with a cinched waist, puff sleeves, and a skirt that moves with you."},
+  {id:6,name:"Esmeralda Tote",cat:"Bag",price:265,badge:"Bestseller",badgeGold:true,img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80",img2:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80",colors:["#2E7D32","#C2185B","#D4AF37"],sizes:["One Size"],desc:"A generous structured tote in full-grain leather with contrast stitching and interior suede lining. The bag that goes everywhere — beautifully."},
+  {id:7,name:"Luna Formal Gown",cat:"Evening Gown",price:545,img:"https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80",img2:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80",colors:["#1a0a0f","#D4AF37","#F8BBD0"],sizes:["XS","S","M","L","XL"],desc:"The Luna is a strapless formal gown with a draped satin bodice and a full layered skirt. Classic, powerful, unforgettable."},
+  {id:8,name:"Rosa Pequeña Bag",cat:"Bag",price:175,badge:"New",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",img2:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80",colors:["#F8BBD0","#C2185B","#D4AF37"],sizes:["One Size"],desc:"Petite and precious. The Rosa is a crossbody bag in blush leather with gold hardware and a braided chain strap — perfect for evenings out."}
+];
+
+// ═══ BLOG DATA ═══
+const BLOGS = [
+  {id:1,cat:"Designer Diaries",title:"How a Single Fabric Started a Movement",date:"January 12, 2025",read:"4 min read",img:"https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=85",exc:"The day I found the silk — dusty, forgotten in a market corner — I knew it was meant to become something extraordinary...",body:`<p style="margin-bottom:24px">The day I found the silk, I almost walked past it. It was tucked behind a pile of polyester blends at a small market stall, dusty and forgotten — but the moment my fingers touched it, I stopped breathing for a second.</p><p style="margin-bottom:24px">It was the color of deep magenta at sunset. Rich, alive, unapologetic. I bought every yard the vendor had.</p><blockquote style="border-left:3px solid #C2185B;padding:16px 24px;margin:32px 0;font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:#C2185B">"Fabric doesn't lie. When you touch the right one, you know exactly what it wants to become."</blockquote><p style="margin-bottom:24px">That fabric became the La Rosa Gown — our first signature piece, and still one of our most beloved. But more than a dress, it became the foundation of everything GraciasMedina Designs stands for: the idea that the most extraordinary things are often hiding in plain sight, waiting to be seen by someone who knows what to look for.</p><p style="margin-bottom:24px">Every collection since then has started the same way. Not with a sketch, but with a feeling. A color. A texture. A story I need to tell.</p><p>Fashion, for me, is never about trend cycles or what's "in season." It's about honoring the materials, the craft, and the woman who will ultimately bring the piece to life simply by wearing it.</p>`},
+  {id:2,cat:"Style Guide",title:"The Ultimate Guide to Styling a Statement Gown",date:"February 3, 2025",read:"6 min read",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85",exc:"A jaw-dropping gown deserves the right accessories — and nothing more. Here's how to let the dress do the talking...",body:`<p style="margin-bottom:24px">A statement gown is, by definition, the loudest thing in the room. Which means everything else you wear needs to know its role: support, not compete.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">Rule 1: One Statement at a Time</h3><p style="margin-bottom:24px">If the dress has drama — heavy embellishment, a bold print, strong color — keep everything else minimal. A delicate gold chain. Simple heels in a neutral. Hair pulled back. The gown should speak; let it.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">Rule 2: The Bag Should Whisper</h3><p style="margin-bottom:24px">Evening bags serve one purpose: to carry your essentials. A small, structured clutch in gold, black, or a tone pulled from the gown itself is always the right choice. Nothing oversized. Nothing with its own embellishment story.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">Rule 3: Shoes Are the Foundation</h3><p style="margin-bottom:24px">For floor-length gowns, your shoes may barely be visible — but they affect how you carry yourself. A heel that makes you feel tall and powerful changes your posture, your stride, and ultimately, the entire look.</p><blockquote style="border-left:3px solid #D4AF37;padding:16px 24px;margin:32px 0;font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:#D4AF37">"Dress to feel something. The right gown doesn't just make you look beautiful — it makes you feel unstoppable."</blockquote><p>At GraciasMedina Designs, every gown is made with this philosophy: that the wearer completes the piece, not the other way around. When you put on one of our gowns, the goal is always the same — that you feel like the most powerful version of yourself.</p>`},
+  {id:3,cat:"Behind the Seams",title:"A Day Inside the Atelier: Where Magic Happens",date:"February 18, 2025",read:"5 min read",img:"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=85",exc:"Step inside the studio where every piece begins: the mood boards, the swatches, and the first cut of fabric...",body:`<p style="margin-bottom:24px">6:45am. The atelier is quiet, but it already smells like work — fabric sizing, thread, the faint cedar of the wardrobe where our completed pieces wait.</p><p style="margin-bottom:24px">This is my favorite hour. Before the day truly begins, I walk through the studio and touch things. The swatches pinned to the mood board. The half-finished bodice on the dress form. A spool of gold thread I've been saving for something worthy.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">The Mood Board</h3><p style="margin-bottom:24px">Every collection begins with a mood board. Not a digital one — a physical board covered in fabric swatches, torn magazine pages, paint chips, and photographs. For our current collection, there are images of bougainvillea in bloom, old telenovela stills from the 1970s, and a photograph of my grandmother on her wedding day.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">The First Cut</h3><p style="margin-bottom:24px">There is no moment more thrilling — or terrifying — than the first cut of a new fabric. It's irreversible. Once you commit, the piece begins its journey toward what it will become.</p><p>I always pause for a moment before that first cut. I remind myself why I'm making this piece, and for whom. That intention goes into every stitch that follows.</p>`},
+  {id:4,cat:"Fashion Opinion",title:"Why Handmade Fashion Will Never Die",date:"March 1, 2025",read:"7 min read",img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=85",exc:"In an age of fast fashion and AI-generated design, the human hand has never been more powerful or more necessary...",body:`<p style="margin-bottom:24px">Every few years, someone declares handmade fashion to be a dying art. Too slow, they say. Too expensive. Too hard to scale.</p><p style="margin-bottom:24px">And every time, the opposite happens. The hunger for the handmade grows stronger.</p><p style="margin-bottom:24px">I believe this happens because fast fashion, for all its convenience, delivers something fundamentally unsatisfying: sameness. When thousands of people wear the same dress on the same weekend, the garment loses its power. It becomes wallpaper.</p><blockquote style="border-left:3px solid #C2185B;padding:16px 24px;margin:32px 0;font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:#C2185B">"A garment made by hand carries the energy of the person who made it. That is not something any machine can replicate."</blockquote><p style="margin-bottom:24px">Handmade fashion is slow by design. It takes time. It requires patience — from the maker and the wearer. But that slowness is the point. The time invested in a piece is what makes it worth keeping, worth caring for, worth passing down.</p><p>At GraciasMedina Designs, we will never sacrifice that. Not for speed. Not for scale. The hand is always in the work — and it always will be.</p>`},
+  {id:5,cat:"Care Guide",title:"5 Ways to Care for Your GraciasMedina Piece",date:"March 14, 2025",read:"3 min read",img:"https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=800&q=85",exc:"A handmade piece deserves handmade care. Here's how to keep your GraciasMedina creation looking extraordinary for years...",body:`<p style="margin-bottom:24px">You've invested in something special. Here's how to make sure it lasts a lifetime — and beyond.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">1. Always Dry Clean Embellished Pieces</h3><p style="margin-bottom:24px">Any piece with hand-sewn embellishments, pearls, beading, or embroidery should always be dry cleaned by a trusted specialist. Water and machine washing can loosen hand-applied details.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">2. Store in a Breathable Garment Bag</h3><p style="margin-bottom:24px">Silk, chiffon, and fine fabrics need to breathe. Store your pieces in a cotton or muslin garment bag — never plastic, which traps moisture and causes yellowing.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">3. Handle Leather Goods with Care</h3><p style="margin-bottom:24px">For our leather bags, use a leather conditioner every 3–6 months. Avoid prolonged exposure to direct sunlight, and store stuffed with tissue paper to maintain shape.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">4. Spot Clean When Possible</h3><p style="margin-bottom:24px">For small stains, spot cleaning with a cool damp cloth is always preferable to a full wash. Act quickly — the sooner you treat a stain, the better the outcome.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">5. When in Doubt, Ask Us</h3><p>We stand behind every piece we make. If you have a care question, reach out — we're always happy to help ensure your GraciasMedina piece looks extraordinary for years to come.</p>`},
+  {id:6,cat:"Designer Diaries",title:"From Sketch to Gown: Our Design Process",date:"March 28, 2025",read:"6 min read",img:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=85",exc:"Every GraciasMedina piece begins with a single pencil line on paper. Here's the full journey from first sketch to finished gown...",body:`<p style="margin-bottom:24px">People often ask: how long does it take to make one of your gowns? The honest answer is: it depends on when you start counting.</p><p style="margin-bottom:24px">The physical construction of a gown takes anywhere from 40 to 120 hours of handwork. But the idea for the gown? That might have been living in my sketchbook for months.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">Step 1: The Sketch</h3><p style="margin-bottom:24px">It always starts with a pencil. I sketch loose silhouettes — sometimes 30 or 40 variations of a single idea — until something feels right. Not perfect. Right. There's a difference.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">Step 2: The Drape</h3><p style="margin-bottom:24px">Before any cutting happens, I drape fabric directly on the dress form. This is where the design truly lives or dies. A silhouette that looks beautiful on paper can fall flat in fabric — or surpass it.</p><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">Step 3: The Pattern</h3><p style="margin-bottom:24px">Once the drape is approved, I transfer it into a working pattern. Every curve is measured, adjusted, and refined. This is the most technical phase — and the one that separates a beautiful garment from a great one.</p><blockquote style="border-left:3px solid #D4AF37;padding:16px 24px;margin:32px 0;font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:#D4AF37">"The pattern is a promise. It's your commitment to the fabric, the wearer, and the finished piece."</blockquote><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin:36px 0 16px;color:#C2185B">Step 4: The Handwork</h3><p>And then — the hands get to work. Every seam. Every embellishment. Every invisible hem. This is where the gown truly becomes a GraciasMedina piece.</p>`}
+];
+
+// ═══ MOBILE MENU ═══
+let mobileOpen = false;
+function toggleMobileMenu() {
+  mobileOpen = !mobileOpen;
+  document.getElementById('mobile-menu').classList.toggle('open', mobileOpen);
+  document.body.style.overflow = mobileOpen ? 'hidden' : '';
+}
+
+// ═══ SPOTIFY MODAL ═══
+function openSpotify() {
+  document.getElementById('spotify-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSpotify(e) {
+  if(e && e.target !== document.getElementById('spotify-modal') && !e.target.closest('.spotify-close')) return;
+  document.getElementById('spotify-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ═══ PAGE ROUTING ═══
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>{l.classList.remove('active');if(l.dataset.page===name)l.classList.add('active');});
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='shop') renderShop();
+  if(name==='blog') renderBlog();
+  initReveal();
+}
+
+// ═══ RENDER PRODUCTS ═══
+function makeCard(p, small=false) {
+  return `<div class="product-card reveal d${(p.id%4)+1}">
+    <div class="product-img-wrap">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      <img class="img2" src="${p.img2}" alt="${p.name}" loading="lazy">
+      <div class="prod-overlay">
+        <button class="ov-btn" onclick="openModal(${p.id})">Quick View</button>
+        <button class="ov-btn" onclick="addToCart(${p.id})">Add to Bag</button>
+      </div>
+      ${p.badge?`<div class="prod-badge${p.badgeGold?' gold':''}">${p.badge}</div>`:''}
+      <button class="prod-wish" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
+    </div>
+    <div class="product-info">
+      <p class="prod-cat">${p.cat}</p>
+      <h3 class="prod-name">${p.name}</h3>
+      <p class="prod-price">$${p.price.toLocaleString()}</p>
+      <div class="prod-colors">${p.colors.map(c=>`<div class="cdot" style="background:${c}"></div>`).join('')}</div>
+    </div>
+  </div>`;
+}
+
+function renderHome() {
+  const el = document.getElementById('home-products');
+  if(el) el.innerHTML = PRODUCTS.slice(0,4).map(p=>makeCard(p)).join('');
+}
+function renderShop() {
+  const el = document.getElementById('shop-products');
+  if(el) el.innerHTML = PRODUCTS.map(p=>makeCard(p)).join('');
+  const cnt = document.getElementById('shop-count');
+  if(cnt) cnt.textContent = PRODUCTS.length+' pieces';
+}
+
+// ═══ RENDER BLOG ═══
+function renderBlog() {
+  const el = document.getElementById('blog-cards');
+  if(!el) return;
+  el.innerHTML = BLOGS.map(b=>`
+    <article class="blog-card reveal">
+      <div class="blog-img"><img src="${b.img}" alt="${b.title}" loading="lazy"></div>
+      <div class="blog-body">
+        <span class="blog-cat-tag">${b.cat}</span>
+        <h3 class="blog-ttl">${b.title}</h3>
+        <p class="blog-exc">${b.exc}</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div class="blog-meta"><i class="fa-regular fa-calendar"></i> ${b.date} · <i class="fa-regular fa-clock"></i> ${b.read}</div>
+          <button onclick="openPost(${b.id})" style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--magenta);border-bottom:1px solid var(--magenta);padding-bottom:2px;cursor:none;transition:all .3s">Read More →</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+  initReveal();
+}
+function openPost(id) {
+  const b = BLOGS.find(x=>x.id===id);
+  if(!b) return;
+  document.getElementById('blog-listing').style.display='none';
+  document.getElementById('blog-post-view').style.display='block';
+  document.getElementById('post-cat').textContent=b.cat;
+  document.getElementById('post-title').textContent=b.title;
+  document.getElementById('post-date').textContent=b.date;
+  document.getElementById('post-read').textContent=b.read;
+  document.getElementById('post-img').src=b.img;
+  document.getElementById('post-body').innerHTML=b.body;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function closeBlogPost() {
+  document.getElementById('blog-listing').style.display='block';
+  document.getElementById('blog-post-view').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ═══ CART ═══
+let cart=[];
+function addToCart(id) {
+  const p=PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  const ex=cart.find(x=>x.id===id);
+  if(ex) ex.qty++;
+  else cart.push({...p,qty:1});
+  updateCart();
+  const b=document.getElementById('cart-count');
+  b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
+  showToast('✦ "'+p.name+'" added to your bag');
+}
+function removeFromCart(id){cart=cart.filter(x=>x.id!==id);updateCart();}
+function changeQty(id,d){const i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);updateCart();}
+function updateCart(){
+  const count=cart.reduce((a,b)=>a+b.qty,0);
+  document.getElementById('cart-count').textContent=count;
+  const total=cart.reduce((a,b)=>a+(b.price*b.qty),0);
+  const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2});
+  const sub=document.getElementById('c-sub'),tot=document.getElementById('c-tot'),ft=document.getElementById('cart-ft'),list=document.getElementById('cart-list');
+  if(sub)sub.textContent=fmt(total);if(tot)tot.textContent=fmt(total);
+  if(!list)return;
+  if(cart.length===0){
+    list.innerHTML='<div class="cart-empty-msg"><i class="fa-regular fa-bag-shopping"></i><p>Your bag is beautifully empty.</p></div>';
+    if(ft)ft.style.display='none';
+  } else {
+    list.innerHTML=cart.map(item=>`
+      <div class="cart-item">
+        <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+        <div class="ci-info">
+          <p class="ci-name">${item.name}</p>
+          <p class="ci-detail">${item.cat} · Size M</p>
+          <p class="ci-price">$${item.price.toLocaleString()}</p>
+          <div class="ci-qty">
+            <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+            <span class="qty-n">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+          </div>
+        </div>
+        <button class="ci-rm" onclick="removeFromCart(${item.id})"><i class="fa-solid fa-xmark"></i></button>
+      </div>`).join('');
+    if(ft)ft.style.display='block';
+  }
+}
+function openCart(){document.getElementById('cart-drawer').classList.add('open');document.getElementById('cart-ov').classList.add('open');document.body.style.overflow='hidden';}
+function closeCart(){document.getElementById('cart-drawer').classList.remove('open');document.getElementById('cart-ov').classList.remove('open');document.body.style.overflow='';}
+
+// ═══ MODAL ═══
+function openModal(id){
+  const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+  document.getElementById('m-img').src=p.img;
+  document.getElementById('m-cat').textContent=p.cat;
+  document.getElementById('m-name').textContent=p.name;
+  document.getElementById('m-price').textContent='$'+p.price.toLocaleString();
+  document.getElementById('m-desc').textContent=p.desc;
+  document.getElementById('m-sizes').innerHTML=p.sizes.map((s,i)=>`<button class="sz-btn${i===1?' on':''}" onclick="this.parentNode.querySelectorAll('.sz-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${s}</button>`).join('');
+  document.getElementById('m-cols').innerHTML=p.colors.map((c,i)=>`<div class="mcol${i===0?' on':''}" style="background:${c}" onclick="this.parentNode.querySelectorAll('.mcol').forEach(d=>d.classList.remove('on'));this.classList.add('on')"></div>`).join('');
+  document.getElementById('m-add').onclick=()=>{addToCart(p.id);closeModal();};
+  document.getElementById('modal-ov').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(e){
+  if(e&&e.target!==document.getElementById('modal-ov')&&!e.target.closest('.modal-close-btn'))return;
+  document.getElementById('modal-ov').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ═══ CHATBOT ═══
+const GRACE={
+  gown:"✨ Our gowns are truly something special. I'm loving the *La Rosa Gown* right now — floor-length silk charmeuse with hand-finished ruching. Perfect for galas and unforgettable evenings. Want me to add it to your bag? 💕",
+  dress:"🌸 The *Alma Maxi Dress* is our bestseller — lightweight crepe, flutter sleeves, hand-embroidered florals. The *Violeta Midi* is stunning too if you want more drama!",
+  bag:"👜 The *Corazón Clutch* and *Esmeralda Tote* are our most loved bags. Full-grain leather, gold GM hardware, and hand-stitched edges. Beauty that lasts a lifetime.",
+  ship:"📦 We ship worldwide! Standard: 5–7 business days. Express: 2–3 days. Every order comes lovingly packaged with a handwritten note from GraciasMedina herself. ✉️",
+  refund:"↩️ Returns accepted within 30 days of delivery on unworn, original-condition items. Fill out our refund form on the Contact page — we process within 3–5 business days.",
+  custom:"✨ Custom orders are our specialty! GraciasMedina works personally with each client. Share your vision via the Contact page. Pieces take 4–6 weeks. Worth every moment of the wait! 💛",
+  price:"Our pieces range from $175 for accessories to $895 for bridal gowns. Every piece is handmade — you're investing in true craftsmanship. 💎",
+  def:"That's a beautiful question! 🌸 I'm here to help — whether you're looking for a gown, a bag, or style inspiration. What occasion are you shopping for? I'll find you something stunning."
+};
+function graceReply(m){
+  const t=m.toLowerCase();
+  if(t.includes('gown')||t.includes('evening')||t.includes('formal'))return GRACE.gown;
+  if(t.includes('dress')||t.includes('maxi')||t.includes('midi'))return GRACE.dress;
+  if(t.includes('bag')||t.includes('clutch')||t.includes('purse')||t.includes('tote'))return GRACE.bag;
+  if(t.includes('ship')||t.includes('deliver')||t.includes('track'))return GRACE.ship;
+  if(t.includes('refund')||t.includes('return')||t.includes('exchange'))return GRACE.refund;
+  if(t.includes('custom')||t.includes('bespoke')||t.includes('order'))return GRACE.custom;
+  if(t.includes('price')||t.includes('cost')||t.includes('much'))return GRACE.price;
+  return GRACE.def;
+}
+function toggleChat(){document.getElementById('chatbot').classList.toggle('open');}
+function qChat(t){document.getElementById('chat-in').value=t;sendChat();}
+function chatKey(e){if(e.key==='Enter')sendChat();}
+function sendChat(){
+  const inp=document.getElementById('chat-in'),val=inp.value.trim();if(!val)return;
+  addMsg(val,'user');inp.value='';
+  setTimeout(()=>addMsg(graceReply(val),'bot'),650);
+}
+function addMsg(txt,type){
+  const msgs=document.getElementById('chat-msgs'),now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),el=document.createElement('div');
+  el.className='cmsg '+type;
+  el.innerHTML=`<div class="cbub">${txt}</div><div class="ctime">${now}</div>`;
+  msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;
+}
+
+// ═══ MUSIC PLAYER ═══
+const TRACKS=[
+  {t:"Runway Flow — Ambient Session",a:"Curated by GraciasMedina",p:35},
+  {t:"Velvet Evenings",a:"Nocturne Collective",p:60},
+  {t:"Golden Hour Lounge",a:"The Sofía Trio",p:20},
+  {t:"La Gracia",a:"Acoustic Atelier",p:75}
+];
+let curT=0,playing=false,musicUp=false;
+function toggleMusic(){
+  musicUp=!musicUp;
+  document.getElementById('music-player').classList.toggle('up',musicUp);
+}
+function setTrack(){
+  const t=TRACKS[curT];
+  document.getElementById('mp-track').textContent=t.t;
+  document.getElementById('mp-fill').style.width=t.p+'%';
+}
+function togglePlay(){
+  playing=!playing;
+  document.getElementById('mp-play').innerHTML=playing?'<i class="fa-solid fa-pause"></i>':'<i class="fa-solid fa-play"></i>';
+  if(playing)showToast('♫ '+TRACKS[curT].t);
+}
+function nextT(){curT=(curT+1)%TRACKS.length;setTrack();if(playing)showToast('♫ '+TRACKS[curT].t);}
+function prevT(){curT=(curT-1+TRACKS.length)%TRACKS.length;setTrack();}
+function setSrc(s,btn){document.querySelectorAll('.mp-src-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');showToast(s==='spotify'?'Connecting to Spotify... ♫':'Connecting to Apple Music... ♪');}
+
+// ═══ HERO SLIDESHOW ═══
+const slides=document.querySelectorAll('.hero-slide');let curSlide=0;
+setInterval(()=>{slides[curSlide].classList.remove('on');curSlide=(curSlide+1)%slides.length;slides[curSlide].classList.add('on');},5000);
+
+// ═══ TESTIMONIALS ═══
+const titems=document.querySelectorAll('.testi-item'),tdots=document.querySelectorAll('.tdot');let curTesti=0;
+function goT(i){titems[curTesti].classList.remove('on');tdots[curTesti].classList.remove('on');curTesti=i;titems[curTesti].classList.add('on');tdots[curTesti].classList.add('on');}
+setInterval(()=>goT((curTesti+1)%titems.length),5000);
+
+// ═══ NAV SCROLL ═══
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60));
+
+// ═══ CURSOR ═══
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  if(Math.random()>.72){
+    const s=document.createElement('div');s.className='spark';
+    const cols=['#D4AF37','#C2185B','#F8BBD0'];
+    s.style.cssText=`left:${mx}px;top:${my}px;background:${cols[Math.floor(Math.random()*3)]}`;
+    document.body.appendChild(s);setTimeout(()=>s.remove(),600);
+  }
+});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,.product-card,.blog-card,.coll-cell').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';cur.style.background='rgba(212,175,55,.4)';ring.style.transform='translate(-50%,-50%) scale(1.5)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.background='var(--gold)';ring.style.transform='translate(-50%,-50%) scale(1)';});
+});
+
+// ═══ SCROLL REVEAL ═══
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
+  document.querySelectorAll('.reveal,.revL,.revR').forEach(el=>{if(!el.classList.contains('in'))obs.observe(el);});
+}
+
+// ═══ WISHLIST ═══
+function toggleWish(btn){
+  btn.classList.toggle('on');
+  const i=btn.querySelector('i');
+  if(btn.classList.contains('on')){i.classList.replace('fa-regular','fa-solid');showToast('💕 Saved to your wishlist');}
+  else i.classList.replace('fa-solid','fa-regular');
+}
+
+// ═══ TOAST ═══
+let toastT;
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ═══ FORMS ═══
+function subEmail(e){e.preventDefault();showToast('✦ Welcome to the circle of Grace! 🌸');e.target.reset();}
+function submitContact(e){e.preventDefault();showToast('✦ Message sent! GraciasMedina will reply within 48 hours. 💕');e.target.reset();}
+function submitRefund(e){e.preventDefault();showToast('✦ Refund request submitted. We\'ll be in touch within 24 hours.');e.target.reset();}
+function filterProducts(){}
+function updatePrice(el){document.getElementById('price-max').textContent='$'+Number(el.value).toLocaleString();}
+
+// ═══ INIT ═══
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('gone');
+    renderHome();
+    updateCart();
+    setTrack();
+    initReveal();
+    setTimeout(()=>{musicUp=true;document.getElementById('music-player').classList.add('up');},3500);
+  },2100);
+});
+</script>
+</body>
+</html>
